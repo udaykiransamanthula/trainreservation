@@ -6,7 +6,7 @@ on:
       - develop
     paths-ignore:
       - 'Src/**'       # Ignore changes in Src directory
-      - 'Dockerfile'  # Ignore changes in Dockerfile
+     # - 'Dockerfile'  # Ignore changes in Dockerfile
   workflow_dispatch:
 
 jobs:
