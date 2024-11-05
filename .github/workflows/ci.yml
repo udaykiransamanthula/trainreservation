@@ -35,3 +35,7 @@ jobs:
       run: |
         docker build -t your-dockerhub-username/your-image-name:${{ github.sha }} .
         docker push your-dockerhub-username/your-image-name:${{ github.sha }}
+         with:
+          context: DockerFileFolder/
+          push: true
+          tags: dockuday/trainuday
