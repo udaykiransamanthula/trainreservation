@@ -8,6 +8,7 @@ on:
     branches:
       - main
 
+      
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,6 +21,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '11'
+        distribution: 'temurin'  # Moved distribution inside 'with'
 
     - name: Build with Maven
       run: mvn clean package
@@ -30,7 +32,15 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Build and push Docker image
+   - name: Build and push Docker image
+      env:
+        IMAGE_NAME: ${{ github.repository }}
       run: |
+<<<<<<< HEAD
         docker build -t dockuday/trainuday:${{ github.sha }} .
         docker push your-dockerhub-username/your-image-name:${{ github.sha }}
+=======
+        docker build -t $IMAGE_NAME:${{ github.sha }} -t $IMAGE_NAME:latest .
+        docker push $IMAGE_NAME:${{ github.sha }}
+        docker push $IMAGE_NAME:latest
+>>>>>>> 9b699cb54d28dccc7e6dff9617db8929b6210546
