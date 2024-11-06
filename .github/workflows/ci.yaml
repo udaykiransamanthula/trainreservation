@@ -35,4 +35,3 @@ jobs:
       run: |
         docker build -t dockuday/trainuday:${{ github.sha }} .
         docker push dockuday/trainuday:${{ github.sha }}
-Update ci.yml · udaykiransamanthula/trainreservation@e4e5742 
