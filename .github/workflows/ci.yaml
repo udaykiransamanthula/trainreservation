@@ -1,4 +1,26 @@
-name: Build and Push Docker Image
+Skip to content
+Navigation Menu
+udaykiransamanthula
+/
+trainreservation
+
+Type / to search
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+Build Docker Image
+Update ci.yml #6
+Jobs
+Run details
+Workflow file for this run
+.github/workflows/ci.yml at e4e5742
+name: Build Docker Image
 
 on:
   push:
@@ -20,14 +42,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '11'
-
-    - name: Cache Maven packages
-      uses: actions/cache@v3
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
+        distribution: 'temurin'  # Moved distribution inside 'with'
 
     - name: Build with Maven
       run: mvn clean package
@@ -40,6 +55,6 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker build -t ${{ github.repository }}:${{ github.sha }} -t ${{ github.repository }}:latest .
-        docker push ${{ github.repository }}:${{ github.sha }}
-        docker push ${{ github.repository }}:latest
+        docker build -t dockuday/trainuday:${{ github.sha }} .
+        docker push dockuday/trainuday:${{ github.sha }}
+Update ci.yml · udaykiransamanthula/trainreservation@e4e5742 
